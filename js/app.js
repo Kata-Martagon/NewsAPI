@@ -1,4 +1,6 @@
 
+//Rebuild this so logic more clear:
+// Build URL, then do XHR request and parse JSON, get what want out of JSON, post to Dom
 
 function displayArticleInfoNYT (article) {
   // docs.headline.main, web_url (the link), snippet
@@ -14,9 +16,9 @@ function updateResultsBody (elements) {
   document.getElementById('results-body').innerHTML = elements.join('')
 }
 
-updateContentNYT('referendum', 'europe and britain', '8310a722a1af4fe39644eee195781143');
+updateContentNYT('referendum', 'europe and britain', '8310a722a1af4fe39644eee195781143', updateResultsBody);
 
-function updateContentNYT(param1, param2, key) {
+function updateContentNYT(param1, param2, key, onDone) {
 
   query = {
     q : param1, //Search terms
@@ -37,7 +39,7 @@ function updateContentNYT(param1, param2, key) {
       console.log(AJAXreturn)
       var questions = AJAXreturn.response.docs.map(displayArticleInfoNYT)
 
-      updateResultsBody(questions)
+      onDone(questions)
       }
   })
 
