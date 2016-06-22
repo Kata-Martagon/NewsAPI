@@ -2,31 +2,50 @@
 
 
 
-updateContent('brexit', guardianAPIKey);
 
-function updateContent(searchString, key) {
 
-  query = {
-    q : searchString, //Search terms
-    'api-key' : key
-  }
+function getMarkup(articles) {
+  console.log(articles.webTitle)
+  return articles.webTitle
+}
 
-  var baseURL = 'http://content.guardianapis.com/'
-  var path = 'search'
+
+
+query = {
+  q : 'brexit', //Search terms
+  'page-size' : 50,
+  'api-key' : guardianAPIKey,
+}
+var baseURL = 'http://content.guardianapis.com/'
+var path = 'search'
+
+var p = xhrRequest(createURL(query, baseURL, path))
+p.then(console.log.bind(console))
+
+function createURL(query, baseURL, path) {
   var queryString = Object.keys(query).map(function(key) {
     return key + '=' + query[key]
   }).join('&')
+  return baseURL + path + '?' + queryString
+}
 
 
+function xhrRequest(URL, onDone) {
   var xhr = new XMLHttpRequest()
-
-  xhr.addEventListener('load', function() {
-    if (xhr.status === 200)
-    var response = JSON.parse(xhr.response)
-    console.log(response)
+  var p = new Promise(function (resolve, reject) {
+    xhr.addEventListener('load', function() {
+      if (xhr.status === 200) {
+        if (onDone) {
+          onDone(JSON.parse(xhr.response))
+        } else {
+          resolve(JSON.parse(xhr.response))
+        }
+      } else {
+        reject(new Error(xhr.status))
+      }
+    })
+    xhr.open('GET', URL)
+    xhr.send()
   })
-
-xhr.open('GET', baseURL + path + '?' + queryString)
-xhr.send()
-
+  return p
 }
