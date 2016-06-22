@@ -1,4 +1,4 @@
-const fetchAPI = (function () {
+
   function fetchAPI (url, method='GET', onDone) {
     const xhr = new XMLHttpRequest()
 
@@ -30,6 +30,3 @@ const fetchAPI = (function () {
       }
     })
   }
-
-  return fetchAPI
-})()
