@@ -65,7 +65,7 @@
     var query = {
       q: 'referendum',
       fq: 'europe and britain',
-      api-key: '8310a722a1af4fe39644eee195781143'
+      api-key: key //'8310a722a1af4fe39644eee195781143'
     }
 
     var baseUrlAndPath = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
@@ -98,10 +98,11 @@
   * Event listeners
   * Attach the appropriate callbacks to the forms submit event
   * ---------------------------------------------------------- */
-  DOM.forms.unanswered.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const tags = e.target.firstElementChild.value
-    getBrexitArticles(tags)
+  // DOM.forms.unanswered.addEventListener('submit', (e) => {
+  //   e.preventDefault()
+  //   const tags = e.target.firstElementChild.value
+
+    getBrexitArticles();
   })
 
 })()
