@@ -1,10 +1,10 @@
-/* global fetchAPI */
+/* global fetchAPI, NYTAPIKey */
 
-function urlBuilder(param1, param2, apikey) {
+function urlBuilder(param1, param2) {
   const query = {
     q: param1, // Search terms
     fq: param2,
-    'api-key': apikey,
+    'api-key': NYTAPIKey,
   };
   const baseUrlPath = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
   const queryString = Object.keys(query).map(key => `${key}=${query[key]}`)
@@ -14,7 +14,7 @@ function urlBuilder(param1, param2, apikey) {
   return url;
 }
 
-const url = urlBuilder('referendum', 'europe and britain', '8310a722a1af4fe39644eee195781143');
+const urlNYT = urlBuilder('referendum', 'europe and britain');
 
 function parseData(obj) {
   return obj.response.docs.map(article => ({
@@ -24,4 +24,6 @@ function parseData(obj) {
   }));
 }
 
-fetchAPI(url, 'GET', parseData);
+// window.urlBuilder = urlBuilder;
+window.urlNYT = urlNYT;
+window.parseData = parseData;
