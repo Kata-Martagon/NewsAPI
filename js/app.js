@@ -13,19 +13,29 @@ function urlBuilder(param1, param2, key) {
   return url
 }
 
-var domManipulator = function(obj) {
-  var articleInfo = obj.response.docs.map(function(article) {
-
-   return (
-    '<div>Question Title: ' + article.headline.main + '</div>' +
-    '<div>Link: <a href="' + article.web_url + '">Click here</a></div>' +
-    '<div>Summary: ' + article.snippet + '</div>' +
-    '</br>'
-  )
-  })
-    document.getElementById('results-body').innerHTML = articleInfo.join('')
-}
+// var domManipulator = function(obj) {
+//   var articleInfo = obj.response.docs.map(function(article) {
+//
+//    return (
+//     '<div>Question Title: ' + article.headline.main + '</div>' +
+//     '<div>Link: <a href="' + article.web_url + '">Click here</a></div>' +
+//     '<div>Summary: ' + article.snippet + '</div>' +
+//     '</br>'
+//   )
+//   })
+//     document.getElementById('results-body').innerHTML = articleInfo.join('')
+// }
 
 var url = urlBuilder('referendum', 'europe and britain', '8310a722a1af4fe39644eee195781143')
 
-fetchAPI(url, 'GET', domManipulator)
+function parseData (obj) {
+  return obj.response.docs.map(function (article) {
+    return {
+      title: article.headline.main,
+      link: article.web_url,
+      snippet: article.snippet
+    }
+  })
+}
+
+fetchAPI(url, 'GET', parseData)
