@@ -1,9 +1,11 @@
 /* global fetchAPI, NYTAPIKey */
 
-function urlBuilder(param1, param2) {
+function urlBuilder(param1, param2, startDate, endDate) {
   const query = {
-    q: param1, // Search terms
+    q: param1,
     fq: param2,
+    'from-date': startDate,
+    'to-date': endDate,
     'api-key': NYTAPIKey,
   };
 
@@ -16,13 +18,11 @@ function urlBuilder(param1, param2) {
   return url;
 }
 
-const urlNYT = urlBuilder('referendum', 'europe and britain');
-
-// const url = urlBuilder('referendum', 'europe and britain',
-// '8310a722a1af4fe39644eee195781143');
+const urlNYT = urlBuilder('referendum', 'europe and britain', '2016-06-23', '2016-06-23');
 
 
 function parseData(obj) {
+  console.log(obj);
   return obj.response.docs.map(article => ({
     title: article.headline.main,
     link: article.web_url,
@@ -30,6 +30,5 @@ function parseData(obj) {
   }));
 }
 
-// window.urlBuilder = urlBuilder;
 window.urlNYT = urlNYT;
 window.parseData = parseData;
