@@ -1,3 +1,4 @@
+/* global guardianAPIKey, fetchAPI */
 
 function createQueryString(query) {
   return Object.keys(query)
@@ -5,23 +6,21 @@ function createQueryString(query) {
                .join('&');
 }
 
-
-query = {
-  q : 'brexit',
-  'api-key' : guardianAPIKey,
-}
-extensions = ['search'];
-var baseURL = 'http://content.guardianapis.com/'
-
-callSuccess = fetchAPI(createUrl(baseURL, extensions, query))
-callSuccess.then(function(value){
-  apiReturn = value.response.results
-})
-
-
-
 function createUrl(baseURL, extensions, query) {
   return `${baseURL}${extensions.join('/')}?${createQueryString(query)}`;
 }
+
+// const query = {
+//   q: 'brexit',
+//   'api-key': guardianAPIKey,
+// };
+//
+// const extensions = ['search'];
+//
+// const baseURL = 'http://content.guardianapis.com/';
+//
+// const callSuccess = fetchAPI(createUrl(baseURL, extensions, query));
+//
+// callSuccess.then(value => value.response.results);
 
 window.createUrl = createUrl;
