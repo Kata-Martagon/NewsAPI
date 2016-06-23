@@ -18,18 +18,15 @@ function urlBuilder(param1, param2) {
 
 const urlNYT = urlBuilder('referendum', 'europe and britain');
 
-// const url = urlBuilder('referendum', 'europe and britain',
-// '8310a722a1af4fe39644eee195781143');
-
 
 function parseData(obj) {
+  console.log(obj);
   return obj.response.docs.map(article => ({
     title: article.headline.main,
     link: article.web_url,
-    snippet: article.snippet,
+    tagline: article.snippet,
   }));
 }
 
-// window.urlBuilder = urlBuilder;
 window.urlNYT = urlNYT;
 window.parseData = parseData;
