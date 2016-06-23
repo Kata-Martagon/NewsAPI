@@ -1,27 +1,34 @@
-function buildArticleNode(template, article) {
+/* global guardianAPIKey, createUrl, fetchAPI, fromGuardianToStandardArticleFormat */
+
+const buildArticleNode = template => article => {
   template.querySelector('h2').textContent = article.title;
   template.querySelector('p').textContent = article.tagline;
 
   return document.importNode(template, true);
+};
+
+function buildArticleNodes(articles) {
+  const articleTemplate = document.getElementById('ArticleTemplate').content;
+  return articles.map(buildArticleNode(articleTemplate));
+}
+
+function displayArticleNodes(articleNodes) {
+  const guardianContent = document.getElementById('GuardianContent');
+  articleNodes.forEach(node => guardianContent.appendChild(node));
 }
 
 function main() {
-  const article = {
-    title: 'Heading 1',
-    tagline: 'This is the tagline',
+  const query = {
+    q: 'brexit',
+    'api-key': guardianAPIKey,
   };
 
-  const article2 = {
-    title: 'Heading 2',
-    tagline: 'This is the tagline',
-  };
+  const guardianUrl = createUrl('http://content.guardianapis.com/', ['search'], query);
 
-
-  const node = buildArticleNode(document.getElementById('ArticleTemplate').content, article);
-  const node2 = buildArticleNode(document.getElementById('ArticleTemplate').content, article2);
-
-  document.getElementById('GuardianContent').appendChild(node);
-  document.getElementById('GuardianContent').appendChild(node2);
+  fetchAPI(guardianUrl)
+    .then(fromGuardianToStandardArticleFormat)
+    .then(buildArticleNodes)
+    .then(displayArticleNodes);
 }
 
 main();
