@@ -1,48 +1,31 @@
+function urlBuilder(param1, param2, key) {
+  const query = {
+    q : param1, //Search terms
+    fq: param2,
+    'api-key' : key
+  }
+  const baseUrlAndPath = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
+  var queryString = Object.keys(query).map(function (key) {
+    return key + '=' + query[key]
+  }).join('&')
 
-//Rebuild this so logic more clear:
-// Build URL, then do XHR request and parse JSON, get what want out of JSON, post to Dom
+  const url = baseUrlAndPath + '?' + queryString
+  return url
+}
 
-function displayArticleInfoNYT (article) {
-  // docs.headline.main, web_url (the link), snippet
-  return (
+var domManipulator = function(obj) {
+  var articleInfo = obj.response.docs.map(function(article) {
+
+   return (
     '<div>Question Title: ' + article.headline.main + '</div>' +
     '<div>Link: <a href="' + article.web_url + '">Click here</a></div>' +
     '<div>Summary: ' + article.snippet + '</div>' +
     '</br>'
   )
-}
-
-function updateResultsBody (elements) {
-  document.getElementById('results-body').innerHTML = elements.join('')
-}
-
-updateContentNYT('referendum', 'europe and britain', '8310a722a1af4fe39644eee195781143', updateResultsBody);
-
-function updateContentNYT(param1, param2, key, onDone) {
-
-  query = {
-    q : param1, //Search terms
-    fq: param2,
-    'api-key' : key
-  }
-
-  var baseUrlAndPath = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
-  var queryString = Object.keys(query).map(function (key) {
-    return key + '=' + query[key]
-  }).join('&')
-
-  var xhr = new XMLHttpRequest()
-
-  xhr.addEventListener('load', function() {
-    if(xhr.status === 200) {
-      var AJAXreturn = JSON.parse(xhr.response)
-      console.log(AJAXreturn)
-      var questions = AJAXreturn.response.docs.map(displayArticleInfoNYT)
-
-      onDone(questions)
-      }
   })
-
-  xhr.open('GET', baseUrlAndPath + '?' + queryString)
-  xhr.send()
+    document.getElementById('results-body').innerHTML = articleInfo.join('')
 }
+
+var url = urlBuilder('referendum', 'europe and britain', '8310a722a1af4fe39644eee195781143')
+
+fetchAPI(url, 'GET', domManipulator)

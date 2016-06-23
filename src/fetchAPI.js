@@ -1,3 +1,4 @@
+
 function fetchAPI (url, method='GET', onDone) {
   const xhr = new XMLHttpRequest()
 
@@ -21,23 +22,9 @@ const _addXhrOnLoadListener = (xhr) => (resolve, reject) => {
   xhr.addEventListener('load', function () {
     if (xhr.status === 200) {
       resolve(JSON.parse(xhr.responseText))
+      // console.log(JSON.parse(xhr.responseText));
     } else {
       reject(new Error(xhr.status))
     }
   })
 }
-
-//
-
-function urlBuilder ()
-  // to be done - returns a string
-}
-
-function domManipulator (obj) {
-  // format data (map)
-  // to be done - manipulates dom
-}
-
-var url = urlBuilder(args)
-
-fetchAPI(url, 'GET', domManipulator)
