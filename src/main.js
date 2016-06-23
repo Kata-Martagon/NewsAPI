@@ -17,6 +17,7 @@ function displayArticleNodes(articleNodes) {
   articleNodes.forEach(node => guardianContent.appendChild(node));
 }
 
+
 function main() {
   const query = {
     q: 'brexit',
