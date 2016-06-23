@@ -1,4 +1,10 @@
 
+function createQueryString(query) {
+  return Object.keys(query)
+               .map(key => `${key}=${query[key]}`)
+               .join('&');
+}
+
 
 query = {
   q : 'brexit',
@@ -14,10 +20,8 @@ callSuccess.then(function(value){
 
 
 
-
 function createUrl(baseURL, extensions, query) {
-  return baseURL + extensions.join('/') + '?' +
-  Object.keys(query).map(function(key){
-    return key + '=' + query[key];
-  }).join('&');
+  return `${baseURL}${extensions.join('/')}?${createQueryString(query)}`;
 }
+
+window.createUrl = createUrl;
