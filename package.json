@@ -1,0 +1,24 @@
+{
+  "name": "news-api",
+  "version": "1.0.0",
+  "description": "Create a news article using The Guardian and NYT APIs that fetches articles based on date of publication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kata-Martagon/NewsAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kata-Martagon/NewsAPI/issues"
+  },
+  "homepage": "https://github.com/Kata-Martagon/NewsAPI#readme",
+  "devDependencies": {
+    "eslint": "^2.13.1",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.9.2"
+  }
+}

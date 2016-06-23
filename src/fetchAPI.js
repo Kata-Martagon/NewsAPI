@@ -1,32 +1,27 @@
+// Function takes one arg and returns a function which takes two args
+const addXhrOnLoadListener = (xhr) => (resolve, reject) => {
+  const noop = () => null;
+  resolve = resolve || noop;
+  reject = reject || noop;
 
-  function fetchAPI (url, method='GET', onDone) {
-    const xhr = new XMLHttpRequest()
+  xhr.addEventListener('load', () => {
+    if (xhr.status === 200) resolve(JSON.parse(xhr.responseText));
+    else reject(new Error(xhr.status));
+  });
+};
 
-    let promise
+function fetchAPI(url, method = 'GET', onDone) {
+  const xhr = new XMLHttpRequest();
 
-    if (onDone) {
-      _addXhrOnLoadListener(xhr)(onDone)
-    } else {
-      promise = new Promise(_addXhrOnLoadListener(xhr))
-    }
+  let promise;
 
-    xhr.open(method, url)
-    xhr.send()
+  if (onDone) addXhrOnLoadListener(xhr)(onDone);
+  else promise = new Promise(addXhrOnLoadListener(xhr));
 
-    return promise
-  }
+  xhr.open(method, url);
+  xhr.send();
 
-  // Function takes one arg and returns a function which takes two args
-  const _addXhrOnLoadListener = (xhr) => (resolve, reject) => {
-    const noop = function () {}
-    resolve = resolve || noop
-    reject = reject || noop
+  return promise;
+}
 
-    xhr.addEventListener('load', function () {
-      if (xhr.status === 200) {
-        resolve(JSON.parse(xhr.responseText))
-      } else {
-        reject(new Error(xhr.status))
-      }
-    })
-  }
+window.fetchAPI = fetchAPI;

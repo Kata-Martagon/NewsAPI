@@ -1,31 +1,14 @@
-/* global describe, it */
+/* global describe, it, expect */
 
-describe('GuardianAPI', function () {
-  it('a basic environment test', function () {
-    expect(true).toBe(true)
-  })
-})
+describe('createUrl', () => {
+  it('should combine Base URL, extensions and queries correctly', () => {
+    const query = {
+      q: 'brexit',
+      'api-key': 123,
+    };
+    const extensions = ['Search'];
+    const baseURL = 'http://www.google.com/';
 
-describe('query/URL builder', function () {
-
-  it('should combine Base URL, extensions and queries correctly', function () {
-    query = {
-      q : 'brexit',
-      'api-key' : 123,
-    }
-    extensions = ['Search'];
-    var baseURL = 'http://www.google.com/'
-
-    expect(createUrl(baseURL, extensions, query)).toBe('http://www.google.com/Search?q=brexit&api-key=123')
-  })
-
-
-
-
-
-
-
-
-
-
-})
+    expect(window.createUrl(baseURL, extensions, query)).toBe('http://www.google.com/Search?q=brexit&api-key=123');
+  });
+});
