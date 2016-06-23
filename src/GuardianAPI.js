@@ -28,7 +28,7 @@ const GuardianAPI = (function wrapper() {
     return `http://content.guardianapis.com/${pathVariables.join('/')}?${buildQueryString(queryParams)}`;
   }
 
-  function fromGuardianToStandardArticle(guardianArticle) {
+  function toStandardArticle(guardianArticle) {
     return {
       title: guardianArticle.webTitle,
       publicationDate: guardianArticle.webPublicationDate,
@@ -37,24 +37,24 @@ const GuardianAPI = (function wrapper() {
     };
   }
 
-  function fromGuardianToStandardArticles(results) {
-    return results.map(fromGuardianToStandardArticle);
+  function toStandardArticles(results) {
+    return results.map(toStandardArticle);
   }
 
   function getArticlesFromResponse(data) {
     return data.response.results;
   }
 
-  function getArticles() {
+  function getArticles(date) {
     const q = 'brexit';
-    const fromDate = '2016-06-20';
-    const toDate = '2016-06-20';
+    const fromDate = date;
+    const toDate = date;
 
     const url = buildUrl(['search'], buildQueryParams(q, fromDate, toDate));
 
     return fetchAPI(url)
               .then(getArticlesFromResponse)
-              .then(fromGuardianToStandardArticles);
+              .then(toStandardArticles);
   }
 
   return {

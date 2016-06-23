@@ -1,7 +1,9 @@
 const DomUpdater = (function wrapper() {
   const buildArticleNode = template => article => {
-    template.querySelector('h2').textContent = article.title;
+    template.querySelector('a').textContent = article.title;
+    template.querySelector('a').href = article.url;
     template.querySelector('p').innerHTML = article.tagline;
+    template.querySelector('h4').textContent = article.publicationDate;
 
     return document.importNode(template, true);
   };
