@@ -1,23 +1,18 @@
 
 
+// function getMarkup(articles) {
+//   console.log(articles.webTitle)
+//   return articles.webTitle
+// }
 
 
-
-
-function getMarkup(articles) {
-  console.log(articles.webTitle)
-  return articles.webTitle
-}
-
-
-
-query = {
-  q : 'brexit', //Search terms
-  'page-size' : 50,
-  'api-key' : guardianAPIKey,
-}
-var baseURL = 'http://content.guardianapis.com/'
-var path = 'search'
+ const query = {
+   q: 'brexit',  // Search terms
+   'page-size' : 50,
+   'api-key': guardianAPIKey,
+ };
+const baseURL = 'http://content.guardianapis.com/'
+const path = 'search'
 
 var p = xhrRequest(createURL(query, baseURL, path))
 p.then(function (value) { console.log(value); })
