@@ -20,7 +20,7 @@ var baseURL = 'http://content.guardianapis.com/'
 var path = 'search'
 
 var p = xhrRequest(createURL(query, baseURL, path))
-p.then(console.log.bind(console))
+p.then(function (value) { console.log(value); })
 
 function createURL(query, baseURL, path) {
   var queryString = Object.keys(query).map(function(key) {
