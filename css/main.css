@@ -58,7 +58,7 @@ html, body {
 }*/
 
 .article {
-  padding: 30px;
+ padding: 30px;
 }
 
 .article h2 {
@@ -67,10 +67,9 @@ html, body {
   color: white;
   font-family: arial;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .article p {
   font-size: 18px;
-
 }
