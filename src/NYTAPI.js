@@ -55,19 +55,6 @@ const NYTAPI = (function wrapper() {
   }
 
   return { getArticles };
-
-  // const urlNYT = buildURL('referendum', 'europe and britain', '2016-06-23', '2016-06-23');
-
-  // function parseData(obj) {
-  //   return obj.response.docs.map(article => ({
-  //     title: article.headline.main,
-  //     link: article.web_url,
-  //     tagline: article.snippet,
-  //   }));
-  // }
-  //
-  // window.urlNYT = urlNYT;
-  // window.parseData = parseData;
 }());
 
 window.NYTAPI = NYTAPI;
