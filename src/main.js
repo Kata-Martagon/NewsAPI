@@ -7,12 +7,12 @@ function buildArticleNode(template, article) {
 
 function main() {
   const article = {
-    title: 'Heading 1',
+    title: 'HEADING',
     tagline: 'This is the tagline',
   };
 
   const article2 = {
-    title: 'Heading 2',
+    title: 'HEADING',
     tagline: 'This is the tagline',
   };
 
