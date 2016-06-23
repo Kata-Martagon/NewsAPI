@@ -13,7 +13,7 @@ function fromGuardianToStandardArticleFormat(data) {
     title: article.webTitle,
     publicationDate: article.webPublicationDate,
     url: article.webUrl,
-    tagline: 'to get tagline',
+    tagline: article.fields ? article.fields.standfirst : '',
   }));
 }
 
