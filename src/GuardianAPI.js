@@ -57,7 +57,10 @@ const GuardianAPI = (function wrapper() {
               .then(fromGuardianToStandardArticles);
   }
 
-  return { getArticles };
+  return {
+    getArticles,
+    TEST: { buildUrl },
+  };
 }());
 
 window.GuardianAPI = GuardianAPI;

@@ -6,14 +6,41 @@ html, body {
   font-weight: lighter;
 }
 
-.header {
-  color: rgb(255,253,247);
+#header {
   position: fixed;
-  width: 100%;
-  height: 40px;
-  background-color: red;
+  margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 40px;
+  background-color: #c00;
   opacity: 0.6;
+  color: rgb(255,253,247);
 }
+
+#newspaperTitles {
+  display: inline-block;
+  position: fixed;
+  background-color: black;
+  width:100%;
+  top:40px;
+  height: 50px;
+  font-size: 22px;
+  color: #CAC9C9;
+}
+
+.NYTimes {
+/*color: rgb(255,253,247);*/
+float: right;
+padding-right: 70px;
+margin-top: 15px;
+}
+
+.guardian{
+  /*color: rgb(255,253,247);*/
+  padding-left: 70px;
+  float: left;
+  margin-top: 15px;
+  }
 
 .container {
   width: 100%;
@@ -55,7 +82,7 @@ html, body {
 }
 
 #NYTimesContent {
-  background-image: url("../rescources/nytimes.jpg");
+  background-image: url("../rescources/possible.jpg");
   background-repeat: repeat-y;
   border-left: 2px solid rgb(81, 130, 157);
 }
@@ -76,10 +103,10 @@ html, body {
 
 .article h2 {
   padding-left: 5px;
-  background-color: red;
-  color: rgb(255,253,247);
-  font-weight: bold;
+  background-color: #c00;
+  color: #fefefe;
   font-size: 20px;
+  font-weight: lighter;
 }
 
 .article p {
