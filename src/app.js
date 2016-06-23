@@ -20,7 +20,7 @@ function parseData(obj) {
   return obj.response.docs.map(article => ({
     title: article.headline.main,
     link: article.web_url,
-    snippet: article.snippet,
+    tagline: article.snippet,
   }));
 }
 
