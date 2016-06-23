@@ -7,39 +7,69 @@ html, body {
 .container {
   width: 100%;
   height: 100%;
-  border: 1px dotted red;
-  display: flex;
+    display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .container > div {
   width: 100%;
-  border: 1px solid yellow;
+  height: 100%;
 }
+
 
 .content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border: 1px dotted pink;
 }
 
 .content > div {
   width: 100%;
   height: 100%;
-  border: 3px dotted green;
+  /*border: 3px dotted green;*/
+  /*border-left: 2px solid rgb(81, 130, 157);
+  content:"";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;*/
 }
 
-/*.article {
-  background-color: blue;
+#GuardianContent {
+  background-image: url("../rescources/guardian.jpg");
+
+}
+
+#NYTimesContent {
+  background-image: url("../rescources/nytimes.jpg");
+  border-left: 2px solid rgb(81, 130, 157);
+}
+
+/*#separation-line:after {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+
+}*/
+
+.article {
+ padding: 30px;
 }
 
 .article h2 {
-  color: red;
-  font-size: 14px;
+  padding-left: 5px;
+  background-color: red;
+  color: white;
+  font-family: arial;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .article p {
   font-size: 18px;
-}*/
+}
