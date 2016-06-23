@@ -1,9 +1,11 @@
 /* global fetchAPI, NYTAPIKey */
 
-function urlBuilder(param1, param2) {
+function urlBuilder(param1, param2, startDate, endDate) {
   const query = {
-    q: param1, // Search terms
+    q: param1,
     fq: param2,
+    'from-date': startDate,
+    'to-date': endDate,
     'api-key': NYTAPIKey,
   };
 
@@ -16,7 +18,7 @@ function urlBuilder(param1, param2) {
   return url;
 }
 
-const urlNYT = urlBuilder('referendum', 'europe and britain');
+const urlNYT = urlBuilder('referendum', 'europe and britain', '2016-06-23', '2016-06-23');
 
 
 function parseData(obj) {
