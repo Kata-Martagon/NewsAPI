@@ -22,7 +22,7 @@ html, body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border: 1px dotted pink;
+  border: 1px dotted purple;
 }
 
 .content > div {
