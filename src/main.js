@@ -22,8 +22,8 @@ function main() {
   const query = {
     q: 'brexit',
     'show-fields': 'standfirst',
-    'from-date': '2016-06-20',
-    'to-date': '2016-06-20',
+    'from-date': '2016-06-23',
+    'to-date': '2016-06-23',
     pageSize: '50',
     'order-by': 'newest',
     'api-key': guardianAPIKey,
