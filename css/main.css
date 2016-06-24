@@ -19,9 +19,9 @@ a:hover {
 #header {
   position: fixed;
   margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    height: 40px;
+  margin-right: auto;
+  width: 100%;
+  height: 40px;
   background-color: #c00;
   opacity: 0.6;
   color: rgb(255,253,247);
@@ -74,14 +74,12 @@ ul .nav_days_links {
 }
 
 .NYTimes {
-/*color: rgb(255,253,247);*/
-float: right;
-padding-right: 70px;
-margin-top: 15px;
+  float: right;
+  padding-right: 70px;
+  margin-top: 15px;
 }
 
 .guardian{
-  /*color: rgb(255,253,247);*/
   padding-left: 70px;
   float: left;
   margin-top: 15px;
@@ -90,7 +88,7 @@ margin-top: 15px;
 .container {
   width: 100%;
   height: 100%;
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
