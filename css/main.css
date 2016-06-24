@@ -15,6 +15,41 @@ html, body {
   background-color: #c00;
   opacity: 0.6;
   color: rgb(255,253,247);
+  display: inline-block;
+}
+
+
+ul .nav_days_links {
+      width:100%;
+      margin:0 auto;
+      padding:0;
+      list-style:none;
+      text-align:center;
+      font-weight: 300;
+      letter-spacing: .04em;
+
+  }
+.nav_days_links li {
+  display:inline-block;
+    width:14%;
+    margin:0;
+    padding:0;
+
+}
+
+.nav_days_links a {
+  text-align:center;
+    margin:0;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    display:block;
+    font-size: 16px;
+}
+
+.nav_days_links a:hover {
+    color: rgb(81, 130, 157);
+    opacity: 0.9;
+    border:none;
 }
 
 #newspaperTitles {
@@ -65,14 +100,6 @@ margin-top: 15px;
 .content > div {
   width: 100%;
   height: 4000px;
-  /*border: 3px dotted green;*/
-  /*border-left: 2px solid rgb(81, 130, 157);
-  content:"";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: 50%;*/
 }
 
 #GuardianContent {
@@ -87,15 +114,6 @@ margin-top: 15px;
   border-left: 2px solid rgb(81, 130, 157);
 }
 
-/*#separation-line:after {
-    content:"";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 100%;
-
-}*/
 
 .article {
  padding: 30px;
@@ -111,4 +129,6 @@ margin-top: 15px;
 
 .article p {
   font-size: 18px;
+  font-family: 'News Cycle', sans-serif;
+
 }
