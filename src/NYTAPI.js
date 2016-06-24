@@ -7,12 +7,13 @@ const NYTAPI = (function wrapper() {
     return Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
   }
 
-  function buildQueryParams(q, fq, fromDate, toDate) {
+  function buildQueryParams(q, fq, sort, fromDate, toDate) {
     const queryParams = {
       q,
       fq,
-      'from-date': fromDate,
-      'to-date': toDate,
+      begin_date: fromDate,
+      end_date: toDate,
+
     };
 
     return Object.assign({}, BASE_QUERY_PARAMS, queryParams);
@@ -42,10 +43,11 @@ const NYTAPI = (function wrapper() {
   function getArticles(date) {
     const q = 'referendum';
     const fq = 'europe and britain';
+    const sort = 'newest';
     const fromDate = date;
     const toDate = date;
 
-    const url = buildUrl(buildQueryParams(q, fq, fromDate, toDate));
+    const url = buildUrl(buildQueryParams(q, fq, sort, toDate));
 
     return fetchAPI(url)
               .then(getArticlesFromResponse)
