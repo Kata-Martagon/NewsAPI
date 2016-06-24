@@ -14,7 +14,6 @@ function main() {
 
   const today = new Date(Date.now());
   const strDate = formatDate(today);
-  // console.log(formatDate(today));
 
   GuardianAPI.getArticles(strDate)
     .then(DomUpdater.buildArticleNodes)

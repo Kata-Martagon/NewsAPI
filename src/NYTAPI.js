@@ -19,7 +19,6 @@ const NYTAPI = (function wrapper() {
   }
 
   function buildUrl(queryParams) {
-    // const queryParams = buildQueryParams(q, fq, fromDate, toDate);
     return `${BASE_URL}?${buildQueryString(queryParams)}`;
   }
 
