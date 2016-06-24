@@ -1,7 +1,10 @@
 /* global fetchAPI, NYT_API_KEY */
 const NYTAPI = (function wrapper() {
   const BASE_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
-  const BASE_QUERY_PARAMS = { 'api-key': NYT_API_KEY };
+  const BASE_QUERY_PARAMS = {
+    'api-key': NYT_API_KEY,
+    sort: 'newest',
+  };
 
   function buildQueryString(queryParams) {
     return Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
