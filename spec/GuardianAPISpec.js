@@ -1,21 +1,13 @@
-/* global describe, it, expect, beforeEach, afterEach, jasmine, createUrl,
-guardianAPIKey, fetchAPI */
+/* global describe, it, expect, beforeEach, afterEach, jasmine, GuardianAPI */
 
-const query = {
+const queryParams = {
   q: 'brexit',
   'api-key': '123',
 };
-const extensions = ['Search'];
-const baseURL = 'http://www.google.com/';
+const pathVariables = ['Search'];
 
-describe('createUrl', () => {
-  it('should combine Base URL, extensions and queries correctly', () => {
-    expect(window.createUrl(baseURL, extensions, query)).toBe('http://www.google.com/Search?q=brexit&api-key=123');
-  });
-});
-
-describe('query/URL builder', () => {
-  it('should combine Base URL, extensions and queries correctly', () => {
-    expect(createUrl(baseURL, extensions, query)).toBe('http://www.google.com/Search?q=brexit&api-key=123');
+describe('buildUrl', () => {
+  it('should combine Base URL, pathVariables and queryParams correctly', () => {
+    expect(GuardianAPI.TEST.buildUrl(pathVariables, queryParams)).toBe('http://content.guardianapis.com/Search?q=brexit&api-key=123');
   });
 });

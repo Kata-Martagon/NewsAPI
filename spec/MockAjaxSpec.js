@@ -1,6 +1,6 @@
 /* global describe, beforeEach, afterEach, it, expect, jasmine */
 
-describe('suite wide usage', () => {
+xdescribe('suite wide usage', () => {
   beforeEach(() => {
     jasmine.Ajax.install();
   });
