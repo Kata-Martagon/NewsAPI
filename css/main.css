@@ -6,6 +6,16 @@ html, body {
   font-weight: lighter;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
 #header {
   position: fixed;
   margin-left: auto;
@@ -86,16 +96,6 @@ margin-top: 15px;
   background-repeat: repeat-y;
   border-left: 2px solid rgb(81, 130, 157);
 }
-
-/*#separation-line:after {
-    content:"";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 100%;
-
-}*/
 
 .article {
  padding: 30px;
