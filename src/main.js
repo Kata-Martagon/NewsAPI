@@ -4,8 +4,12 @@ function fillZero(num) {
   return num < 10 ? `0${num}` : num;
 }
 
-function formatDate(date) {
+function formatGuardianDate(date) {
   return `${date.getFullYear()}-${fillZero(date.getMonth() + 1)}-${fillZero(date.getDate())}`;
+}
+
+function formatNYTDate(date) {
+  return `${date.getFullYear()}${fillZero(date.getMonth() + 1)}${fillZero(date.getDate())}`;
 }
 
 function main() {
@@ -13,13 +17,12 @@ function main() {
   const NYTContentNode = document.getElementById('NYTimesContent');
 
   const today = new Date(Date.now());
-  const strDate = formatDate(today);
 
-  GuardianAPI.getArticles(strDate)
+  GuardianAPI.getArticles(formatGuardianDate(today))
     .then(DomUpdater.buildArticleNodes)
     .then(DomUpdater.displayArticleNodes(guardianContentNode));
 
-  NYTAPI.getArticles(strDate)
+  NYTAPI.getArticles(formatNYTDate(today))
     .then(DomUpdater.buildArticleNodes)
     .then(DomUpdater.displayArticleNodes(NYTContentNode));
 }

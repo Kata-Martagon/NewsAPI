@@ -11,8 +11,8 @@ const NYTAPI = (function wrapper() {
     const queryParams = {
       q,
       fq,
-      'from-date': fromDate,
-      'to-date': toDate,
+      begin_date: fromDate,
+      end_date: toDate,
     };
 
     return Object.assign({}, BASE_QUERY_PARAMS, queryParams);
