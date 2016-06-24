@@ -27,31 +27,30 @@ const NYTAPI = (function wrapper() {
     return data.response.docs;
   }
 
-  // TODO: Add publication date
-  function fromNYTToStandardArticle(nytArticle) {
+  function toStandardArticle(nytArticle) {
     return {
       title: nytArticle.headline.main,
-      publicationDate: 'tbd',
-      link: nytArticle.web_url,
+      publicationDate: nytArticle.pub_date,
+      url: nytArticle.web_url,
       tagline: nytArticle.snippet,
     };
   }
 
-  function fromNYTToStandardArticles(results) {
-    return results.map(fromNYTToStandardArticle);
+  function toStandardArticles(results) {
+    return results.map(toStandardArticle);
   }
 
-  function getArticles() {
+  function getArticles(date) {
     const q = 'referendum';
     const fq = 'europe and britain';
-    const fromDate = '2016-06-20';
-    const toDate = '2016-06-20';
+    const fromDate = date;
+    const toDate = date;
 
     const url = buildUrl(buildQueryParams(q, fq, fromDate, toDate));
 
     return fetchAPI(url)
               .then(getArticlesFromResponse)
-              .then(fromNYTToStandardArticles);
+              .then(toStandardArticles);
   }
 
   return { getArticles };
