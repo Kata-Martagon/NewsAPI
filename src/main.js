@@ -2,14 +2,15 @@
 
 function main() {
   const today = new Date(Date.now());
-  console.log(today);
 
+  // Produces an array of date objects, in same format as 'today', of previous 7 days
   const datesLastWeek = Array.from({ length: 7 }, (_, idx) => new Date(today - (idx + 1) * (8.64 * Math.pow(10, 7))));
-  console.log(datesLastWeek);
+  // console.log(datesLastWeek);
 
   const navDates = datesLastWeek.map(el => el.toDateString().slice(4, 10));
-  console.log(navDates);
+  // console.log(navDates);
 
+  navDates.map((date, index) => document.getElementById('dayPrevious' + (index + 1)).innerHTML = date);
 
   const guardianContentNode = document.getElementById('GuardianContent');
   const NYTContentNode = document.getElementById('NYTimesContent');
