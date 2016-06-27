@@ -5,26 +5,38 @@ function main() {
 
   // Produces an array of date objects, in same format as 'today', of previous 7 days
   const datesLastWeek = Array.from({ length: 7 }, (_, idx) => new Date(today - (idx + 1) * (8.64 * Math.pow(10, 7))));
-  // console.log(datesLastWeek);
 
   const navDates = datesLastWeek.map(el => el.toDateString().slice(4, 10));
-  // console.log(navDates);
 
-  navDates.map((date, index) => document.getElementById('dayPrevious' + (index + 1)).innerHTML = date);
+  navDates.forEach((date, index) => {
+    const dateNode = document.getElementById('dayPrevious' + (index + 1));
+    dateNode.addEventListener('click', (e) => {
+      e.preventDefault();
+      loadData(datesLastWeek[index]);
+    });
+    dateNode.innerHTML = date;
+  });
 
-  const guardianContentNode = document.getElementById('GuardianContent');
-  const NYTContentNode = document.getElementById('NYTimesContent');
-
-  GuardianAPI.getArticles(formatGuardianDate(today))
-    .then(DomUpdater.buildArticleNodes)
-    .then(DomUpdater.displayArticleNodes(guardianContentNode));
-
-  NYTAPI.getArticles(formatNYTDate(today))
-    .then(DomUpdater.buildArticleNodes)
-    .then(DomUpdater.displayArticleNodes(NYTContentNode));
+  loadData(today);
 }
 
 main();
+
+function loadData(date) {
+  const guardianContentNode = document.getElementById('GuardianContent');
+  const NYTContentNode = document.getElementById('NYTimesContent');
+
+  DomUpdater.clearArticleNodes(guardianContentNode);
+  DomUpdater.clearArticleNodes(NYTContentNode);
+
+  GuardianAPI.getArticles(formatGuardianDate(date))
+    .then(DomUpdater.buildArticleNodes)
+    .then(DomUpdater.displayArticleNodes(guardianContentNode));
+
+  NYTAPI.getArticles(formatNYTDate(date))
+    .then(DomUpdater.buildArticleNodes)
+    .then(DomUpdater.displayArticleNodes(NYTContentNode));
+}
 
 
 function fillZero(num) {
