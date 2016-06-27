@@ -3,7 +3,7 @@ const DomUpdater = (function wrapper() {
     template.querySelector('a').textContent = article.title;
     template.querySelector('a').href = article.url;
     template.querySelector('p').innerHTML = article.tagline;
-    template.querySelector('h4').textContent = article.publicationDate;
+    template.querySelector('h4').textContent = article.publicationDate.slice(0, 10);
 
     return document.importNode(template, true);
   };
@@ -13,11 +13,17 @@ const DomUpdater = (function wrapper() {
     return articles.map(buildArticleNode(articleTemplate));
   }
 
+  const clearArticleNodes = contentNode => {
+    while (contentNode.hasChildNodes()) {
+      contentNode.removeChild(contentNode.firstChild);
+    }
+  };
+
   const displayArticleNodes = contentNode => articleNodes => {
     articleNodes.forEach(node => contentNode.appendChild(node));
   };
 
-  return { buildArticleNodes, displayArticleNodes };
+  return { clearArticleNodes, buildArticleNodes, displayArticleNodes };
 }());
 
 window.DomUpdater = DomUpdater;
